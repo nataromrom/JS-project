@@ -153,10 +153,19 @@ body {
     object-fit: cover;
 }
 
-.card:hover>.card__front {
+
+// Переворот карточек
+
+.flipped-front {
     transform: perspective(600px) rotateY(-180deg);
 }
 
-.card:hover>.card__back {
+.flipped-back {
     transform: perspective(600px) rotateY(0deg);
 }
+
+.hidden {
+    opacity:0;
+    transition: 1.5s;
+}
+
