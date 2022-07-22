@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function (event) {
 
     let arr = [];
-
     let arrSize = 10;
 
     for (let i = 1; i <= arrSize; i++) {
