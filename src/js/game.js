@@ -1,6 +1,8 @@
 // Переворот карточек по нажатию  и проверка пары
 
 let card = document.querySelectorAll(".card");
+let result = document.querySelector(".result__attempts");
+let attempts = 0;
 let arr = [];
 
 function removeClass (element) {
@@ -37,6 +39,7 @@ function reverse() {
     arr.push(this);
     if (arr.length == 2) {
         checkResult(arr);
+        result.innerHTML = attempts += 1;
     }
 }
 

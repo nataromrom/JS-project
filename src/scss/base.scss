@@ -90,6 +90,7 @@ body {
 .game__content {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     width: 90vh;
 }
 
@@ -169,3 +170,6 @@ body {
     transition: 1.5s;
 }
 
+.result {
+    display: flex;
+}
