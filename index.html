@@ -12,6 +12,40 @@
 
 <body>
     <div class="wrapper">
+        <div class="start-page_wrapper start-page">
+            <h1 class="title">Игра</h1>
+            <form action="#" class="form form_wrapper">
+                <div class="user-name input-group">
+                    <input type="text" id="name" class="login-input" required autocomplete="off">
+                    <label for="name" class="login-label">Имя</label>
+                </div>
+                <div class="user-password input-group">
+                    <input type="password" id="password" class="password-input" required>
+                    <label for="password" class="password-label">Пароль</label>
+                </div>
+            </form>
+            <div class="start">
+                <button class="start_btn btn">Старт</button>
+
+            </div>
+            <div class="setting">
+                <div class="subtitle">Выберите уровень сложности:</div>
+                <div class="level__container">
+                    <div class="radio">
+                        <input type="radio" name="level" id="easyLevel" value="12">
+                        <label for="easyLevel">Легко</label>
+                    </div>
+                    <div class="radio">
+                        <input type="radio" name="level" id="normalLevel" value="16">
+                        <label for="normalLevel">Нормально</label>
+                    </div>
+                    <div class="radio">
+                        <input type="radio" name="level" id="hardLevel" value="20">
+                        <label for="hardLevel">Сложно</label>
+                    </div>
+                </div>
+            </div>
+        </div>
         <main>
             <div class="game__container">
                 <h1 class="title">Игра</h1>
