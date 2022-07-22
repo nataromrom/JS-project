@@ -91,6 +91,7 @@ body {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    justify-content: center;
     width: 90vh;
 }
 
@@ -98,8 +99,6 @@ body {
     position: relative;
     margin: 10px;
     cursor: pointer;
-    /* width: 180px;
-    height: 250px; */
     width: 14vh;
     height: 19vh;
 }
@@ -154,10 +153,32 @@ body {
     object-fit: cover;
 }
 
-.card:hover>.card__front {
+// Переворот карточек
+
+.flipped-front {
     transform: perspective(600px) rotateY(-180deg);
 }
 
-.card:hover>.card__back {
+.flipped-back {
     transform: perspective(600px) rotateY(0deg);
+}
+
+.hidden {
+    opacity:0;
+    transition: 1.5s;
+}
+
+.result {
+    display: flex;
+}
+
+//блок таблицы
+
+.game__table {
+    display: flex;
+    justify-content: center;
+    border: thick double #7F615A;
+    border-radius: 3px;
+    height: 60vh;
+    width: 70vw;
 }
