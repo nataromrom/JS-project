@@ -89,6 +89,7 @@ body {
 
 .game__content {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     justify-content: center;
     width: 90vh;
@@ -98,8 +99,6 @@ body {
     position: relative;
     margin: 10px;
     cursor: pointer;
-    /* width: 180px;
-    height: 250px; */
     width: 14vh;
     height: 19vh;
 }
@@ -154,7 +153,6 @@ body {
     object-fit: cover;
 }
 
-
 // Переворот карточек
 
 .flipped-front {
@@ -172,4 +170,15 @@ body {
 
 .result {
     display: flex;
+}
+
+//блок таблицы
+
+.game__table {
+    display: flex;
+    justify-content: center;
+    border: thick double #7F615A;
+    border-radius: 3px;
+    height: 60vh;
+    width: 70vw;
 }
