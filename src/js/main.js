@@ -2,7 +2,9 @@ const arr = [];
 const arrSize = 2;
 const startButton = document.querySelector('button');
 let k = 0;
-
+const watch = document.querySelector('#watch');
+const userName = "Наташа";
+const gameLevel = "Легкий";
 
 document.addEventListener("DOMContentLoaded", function (event) {
 
@@ -80,7 +82,6 @@ function addContent() {
 }
 
 // Переворот карточек по нажатию
-
 function gameStart() {
     let card = document.querySelectorAll(".card");
     let result = document.querySelector(".result__attempts");
@@ -107,21 +108,24 @@ function gameStart() {
 
         arr.push(this);
         if (arr.length == 2) {
-            checkResult(arr, k);
             result.innerHTML = attempts += 1;
+            checkResult(arr, k);
         }
     }
     card.forEach(el => el.addEventListener('click', reverse));
 }
 
-// проверка одинаковые ли карточки
+// Проверка одинаковые ли карточки
 function checkResult(arr) {
+
     if (arr[0].dataset.type == arr[1].dataset.type) {
         arr.forEach(element => element.classList.add("hidden"));
         k += 1;
         if (k == arrSize) {
             pauseWatch();
-            setTimeout(showWinTable, 900);
+            let gameTime = watch.innerHTML;
+            let gameResult = document.querySelector(".result__attempts").innerHTML;
+            setTimeout(showWinTable, 900, gameTime, gameResult);
         }
     } else {
         arr.forEach(element => {
@@ -129,7 +133,7 @@ function checkResult(arr) {
         });
     }
 }
-// обратный переворот карточек если не совпали
+// Обратный переворот карточек если не совпали
 function removeClass(element) {
     element.firstElementChild.classList.remove("flipped-front");
     element.lastElementChild.classList.remove("flipped-back");
@@ -137,16 +141,34 @@ function removeClass(element) {
 
 
 // Вывод таблицы победителей
-
-function showWinTable() {
+function showWinTable(gameTime, gameResult) {
     document.querySelector(".game__content").innerHTML =
         `<div class="game__table">
-                <h2>Ура!</h2>
-            </div>`
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Имя</th>
+                        <th>Время</th>
+                        <th>Количество попыток</th>
+                        <th>Уровень сложности</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row">1</td>
+                        <td>${userName}</td>
+                        <td>${gameTime}</td>
+                        <td>${gameResult}</td>
+                        <td>${gameLevel}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>`
     document.querySelector(".game__block").style.display = 'none';
 }
+
 // Секундомер
-const watch = document.querySelector('#watch');
 let milliseconds = 0;
 let timer;
 
@@ -155,7 +177,7 @@ const startWatch = () => {
     clearInterval(timer);
     timer = setInterval(() => {
         milliseconds += 10;
-        let dateTimer = new Date(milliseconds); 
+        let dateTimer = new Date(milliseconds);
         watch.innerHTML =
             ('0' + dateTimer.getUTCHours()).slice(-2) + ':' +
             ('0' + dateTimer.getUTCMinutes()).slice(-2) + ':' +
