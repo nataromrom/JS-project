@@ -1,6 +1,9 @@
 const arr = [];
-const arrSize = 2;
+const arrTwo = [];
+const arrSize = 3;
+let attempts = 0;
 const startButton = document.querySelector('button');
+const result = document.querySelector(".result__attempts");
 let k = 0;
 const watch = document.querySelector('#watch');
 const userName = "Наташа";
@@ -14,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 });
 startButton.onclick = function () {
-    k = 0;
+    clearResults();
     resetWatch();
     document.querySelector(".game__block").style.display = 'block';
     shuffle(arr);
@@ -84,40 +87,35 @@ function addContent() {
 // Переворот карточек по нажатию
 function gameStart() {
     let card = document.querySelectorAll(".card");
-    let result = document.querySelector(".result__attempts");
-    let attempts = 0;
-    let arr = [];
     result.innerHTML = " ";
+    card.forEach(el => el.addEventListener('click', reverse));
+}
 
-    function reverse() {
-        startWatch();
-        if (arr.length == 2) {
-            arr.length = 0;
-        }
-        if (arr.length == 1) {
-            if (this == arr[0]) {
-                return;
-            }
-        }
-        if (this.classList.contains("hidden")) {
+//Переворот карточек
+function reverse() {
+    startWatch();
+    if (arrTwo.length == 2) {
+        arrTwo.length = 0;
+    }
+    if (arrTwo.length == 1) {
+        if (this == arrTwo[0]) {
             return;
         }
-
-        this.firstElementChild.classList.add("flipped-front");
-        this.lastElementChild.classList.add("flipped-back");
-
-        arr.push(this);
-        if (arr.length == 2) {
-            result.innerHTML = attempts += 1;
-            checkResult(arr, k);
-        }
     }
-    card.forEach(el => el.addEventListener('click', reverse));
+    if (this.classList.contains("hidden")) {
+        return;
+    }
+    this.firstElementChild.classList.add("flipped-front");
+    this.lastElementChild.classList.add("flipped-back");
+    arrTwo.push(this);
+    if (arrTwo.length == 2) {
+        result.innerHTML = attempts += 1;
+        checkResult(arrTwo, k);
+    }
 }
 
 // Проверка одинаковые ли карточки
 function checkResult(arr) {
-
     if (arr[0].dataset.type == arr[1].dataset.type) {
         arr.forEach(element => element.classList.add("hidden"));
         k += 1;
@@ -133,12 +131,12 @@ function checkResult(arr) {
         });
     }
 }
+
 // Обратный переворот карточек если не совпали
 function removeClass(element) {
     element.firstElementChild.classList.remove("flipped-front");
     element.lastElementChild.classList.remove("flipped-back");
 }
-
 
 // Вывод таблицы победителей
 function showWinTable(gameTime, gameResult) {
@@ -168,6 +166,13 @@ function showWinTable(gameTime, gameResult) {
     document.querySelector(".game__block").style.display = 'none';
 }
 
+//Очистить результаты
+function clearResults(){
+    arrTwo.length = 0;
+    attempts = 0;
+    k = 0;
+}
+
 // Секундомер
 let milliseconds = 0;
 let timer;
@@ -192,6 +197,7 @@ const pauseWatch = () => {
 };
 
 const resetWatch = () => {
+    clearResults();
     watch.classList.remove('paused');
     clearInterval(timer);
     milliseconds = 0;
