@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Wander Over Yonder";
-    src: url("../fonts/Wander.ttf"); 
+    src: url("../fonts/Wander.ttf");
 }
 
 *,
@@ -79,7 +79,7 @@ body {
     text-transform: uppercase;
     text-align: center;
     color: #7F615A;
-/*     color: #676C6D; 
+    /*     color: #676C6D; 
     color: #D6856F;  */
 }
 
@@ -182,19 +182,20 @@ body {
     background-color: #FFFBF9;
     width: 50px;
     height: 50px;
-    transition: 0.5s; 
+    transition: 0.5s;
 }
 
-.btn__item img{
+.btn__item img {
     width: 40px;
     height: 40px;
 }
 
 .scale {
-    transition: 0.5s; 
+    transition: 0.5s;
 }
+
 .scale:hover {
-    transform: scale(1.2); 
+    transform: scale(1.2);
 }
 
 .result__attempts {
@@ -206,14 +207,37 @@ body {
 }
 
 //блок таблицы
-
 .game__table {
     display: flex;
     justify-content: center;
-    border: thick double #7F615A;
-    border-radius: 3px;
-    height: 60vh;
-    width: 70vw;
+    align-items: center;
+    width: 600px;
+    background-color: #d6856f29;
+    border-width: 3px 4px 3px 5px;
+    border-radius: 95% 4% 92% 5%/4% 95% 6% 95%;
+    transform: rotate(2deg);
+    border: solid #7F615A;
+    border-color: #7F615A;
+}
+
+.table {
+    color: #7F615A;
+    transform: rotate(-2deg);
+    text-align: center;
+    padding: 30px 10px;
+}
+
+th {
+    padding: 10px;
+    background-color: #d6856f2c;
+    border-radius: 8px;
+    font-size: 26px;
+    font-weight: 400;
+}
+
+td {
+    font-size: 20px;
+    padding: 10px;
 }
 
 // Адаптация 
@@ -329,5 +353,3 @@ body {
         margin: 5px;
     }
 }
-
-
