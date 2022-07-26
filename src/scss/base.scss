@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "Wander Over Yonder";
+    src: url("../fonts/Wander.ttf");
+}
+
 *,
 *::before,
 *::after {
@@ -39,12 +44,12 @@ body {
 
 /* ================================================================= */
 body {
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Wander Over Yonder', 'Rubik', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 17px;
+    font-size: 22px;
     line-height: 130%;
-    color: #1F2029;
+    color: #7F615A;
     background-color: #FFFBF9;
 }
 
@@ -74,8 +79,8 @@ body {
     text-transform: uppercase;
     text-align: center;
     color: #7F615A;
-    /* color: #676C6D; */
-    /* color: #D6856F; */
+    /*     color: #676C6D; 
+    color: #D6856F;  */
 }
 
 /* ========================================================================== */
@@ -89,16 +94,15 @@ body {
 
 .game__content {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-    width: 90vh;
+    justify-content: center;
 }
 
 .card {
     position: relative;
     margin: 10px;
     cursor: pointer;
-    /* width: 180px;
-    height: 250px; */
     width: 14vh;
     height: 19vh;
 }
@@ -153,10 +157,199 @@ body {
     object-fit: cover;
 }
 
-.card:hover>.card__front {
+// Переворот карточек
+
+.flipped-front {
     transform: perspective(600px) rotateY(-180deg);
 }
 
-.card:hover>.card__back {
+.flipped-back {
     transform: perspective(600px) rotateY(0deg);
+}
+
+.hidden {
+    opacity: 0;
+    transition: 1.5s;
+    cursor: auto;
+}
+
+.result {
+    display: flex;
+}
+
+
+.btn__item {
+    background-color: #FFFBF9;
+    width: 50px;
+    height: 50px;
+    transition: 0.5s;
+}
+
+.btn__item img {
+    width: 40px;
+    height: 40px;
+}
+
+.scale {
+    transition: 0.5s;
+}
+
+.scale:hover {
+    transform: scale(1.2);
+}
+
+.result__attempts {
+    padding-left: 5px;
+}
+
+.game__block {
+    text-align: center;
+}
+
+//блок таблицы
+.game__table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    background-color: #d6856f29;
+    border-width: 3px 4px 3px 5px;
+    border-radius: 95% 4% 92% 5%/4% 95% 6% 95%;
+    transform: rotate(2deg);
+    border: solid #7F615A;
+    border-color: #7F615A;
+}
+
+.table {
+    color: #7F615A;
+    transform: rotate(-2deg);
+    text-align: center;
+    padding: 30px 10px;
+}
+
+th {
+    padding: 10px;
+    background-color: #d6856f2c;
+    border-radius: 8px;
+    font-size: 26px;
+    font-weight: 400;
+}
+
+td {
+    font-size: 20px;
+    padding: 10px;
+}
+
+// Адаптация 
+
+.small {
+    width: 14vh;
+    height: 19vh;
+    margin: 10px;
+}
+
+.medium {
+    width: 14vh;
+    height: 19vh;
+    margin: 10px;
+}
+
+.large {
+    width: 14vh;
+    height: 19vh;
+    margin: 10px;
+}
+
+.sm-container {
+    width: 75vh;
+}
+
+.md-container {
+    width: 75vh;
+}
+
+.lg-container {
+    width: 90vh;
+}
+
+/* TABLET */
+@media (max-width: 991.98px) {
+    [class*="__container"] {
+        max-width: 750px;
+    }
+
+}
+
+
+/* MOBILE */
+@media (max-width: 767.98px) {
+    [class*="__container"] {
+        max-width: none;
+    }
+
+    .sm-container {
+        width: 80vh;
+    }
+
+    .md-container {
+        width: 80vh;
+    }
+
+    .lg-container {
+        width: 70vh;
+    }
+
+    .small {
+        width: 14vh;
+        height: 19vh;
+        margin: 10px;
+    }
+
+    .medium {
+        width: 14vh;
+        height: 19vh;
+        margin: 10px;
+    }
+
+    .large {
+        width: 11vh;
+        height: 15vh;
+        margin: 8px;
+    }
+}
+
+/* MOBILE SMALL */
+@media (max-width: 575.98px) {
+
+
+    .sm-container {
+        width: 80vh;
+    }
+
+    .md-container {
+        width: 80vh;
+    }
+
+    .lg-container {
+        width: 50vh;
+        padding: 0 10px;
+    }
+
+    .small {
+        width: 14vh;
+        height: 19vh;
+        margin: 10px;
+    }
+
+    .medium {
+        width: 14vh;
+        height: 19vh;
+        margin: 10px;
+    }
+
+    .large {
+        width: 8vh;
+        height: 12vh;
+        margin: 5px;
+    }
 }
