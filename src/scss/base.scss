@@ -87,9 +87,10 @@ body {
 .table-col {
     flex-direction: column;
 }
+
 .start {
     text-align: center;
-} 
+}
 
 .game__container {
     display: flex;
@@ -102,7 +103,7 @@ body {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    justify-content: center;
+    align-items: center;
 }
 
 .card {
