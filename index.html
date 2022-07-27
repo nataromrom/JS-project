@@ -13,8 +13,29 @@
 <body>
     <div class="wrapper">
         <main>
+            <div class="start-page__wrapper start-page">
+                <h1 class="title">Игра</h1>
+                <div class="user-name input-group">
+                    <input type="text" id="name" class="login-input" required autocomplete="off">
+                    <label for="name" class="login-label">Имя</label>
+                </div>
+                <div class="start">
+                    <button class="start_btn btn">Старт</button>
+                </div>
+                <div class="setting">
+                    <div class="level">
+                        <input name="level" id="one" type="radio" checked value="6" />
+                        <label for="one" class="level__label">Легко</label>
+                        <input name="level" id="two" type="radio" value="8" />
+                        <label for="two" class="level__label">Нормально</label>
+                        <input name="level" id="three" type="radio" value="10" />
+                        <label for="three" class="level__label">Сложно</label>
+                        <div class="level__indicator"></div>
+                    </div>
+                </div>
+            </div>
+
             <div class="game__container">
-                <button class="btn">Старт</button>
                 <div class="game__content">
                 </div>
                 <div class="game__block">

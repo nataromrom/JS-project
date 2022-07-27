@@ -1,23 +1,31 @@
 const arr = [];
 const arrTwo = [];
-const arrSize = 2;
-const userName = "Наташа";
+let gameLevel;
+let arrSize;
+let userName;
 let k = 0;
 let attempts = 0;
-let gameLevel;
 const startButton = document.querySelector('.btn');
 const result = document.querySelector(".result__attempts");
 const watch = document.querySelector('#watch');
 
 document.addEventListener("DOMContentLoaded", function (event) {
+    document.querySelector(".game__container").style.display = 'none';
+});
 
+startButton.onclick = function () {
+    userName =  document.querySelector(".login-input").value;
+    if (!userName){
+        userName =  "Гость"; 
+    }
+    document.querySelector(".game__container").style.display = 'flex';
+    document.querySelector(".start-page").style.display = 'none';
+    arrSize = document.querySelector("input[name='level']:checked").value;
+ 
     for (let i = 1; i <= arrSize; i++) {
         arr.push(i);
         arr.push(i);
     }
-});
-
-startButton.onclick = function () {
     launchGame();
 }
 
@@ -70,22 +78,23 @@ function addContent() {
                 </div>`;
     }
     document.querySelector(".game__content").innerHTML = cardContent;
-    let container = document.querySelector(".game__content")
-    let card = document.querySelectorAll(".card")
+    let container = document.querySelector(".game__content");
+    let card = document.querySelectorAll(".card");
+
     switch (arrSize) {
-        case 6:
+        case '6':
             card.forEach(el => el.classList.add("small"));
             container.classList.add("sm-container");
             gameLevel = "Легкий";
             break;
 
-        case 8:
+        case '8':
             card.forEach(el => el.classList.add("medium"));
             container.classList.add("md-container");
-            gameLevel = "Средний";
+            gameLevel = "Нормальный";
             break;
 
-        case 10:
+        case '10':
             card.forEach(el => el.classList.add("large"));
             container.classList.add("lg-container");
             gameLevel = "Сложный";
@@ -149,7 +158,6 @@ function removeClass(element) {
 
 // Вывод таблицы победителей
 function showWinTable(gameTime, gameResult) {
-
     // История игр
     let arrUsers = [];
     let user = {
@@ -205,7 +213,7 @@ function showWinTable(gameTime, gameResult) {
     localStorage.setItem("winHistory", JSON.stringify(arrUsers));
     document.querySelector(".game__content").innerHTML =
         `<div class="start">
-        <button id="new-button" class="new__button">Новая игра</button>
+        <button id="new-button" class="btn">Новая игра</button>
     </div>`
     document.querySelector(".game__content").innerHTML += historyWinTable;
     document.querySelector(".game__content").classList.add("table-col");
