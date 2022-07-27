@@ -1,13 +1,13 @@
 const arr = [];
 const arrTwo = [];
-const arrSize = 3;
-let attempts = 0;
-const startButton = document.querySelector('button');
-const result = document.querySelector(".result__attempts");
-let k = 0;
-const watch = document.querySelector('#watch');
+const arrSize = 2;
 const userName = "Наташа";
-const gameLevel = "Легкий";
+let k = 0;
+let attempts = 0;
+let gameLevel;
+const startButton = document.querySelector('.btn');
+const result = document.querySelector(".result__attempts");
+const watch = document.querySelector('#watch');
 
 document.addEventListener("DOMContentLoaded", function (event) {
 
@@ -16,7 +16,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
         arr.push(i);
     }
 });
+
 startButton.onclick = function () {
+    launchGame();
+}
+
+//Основные функции для запуска игры
+function launchGame() {
     clearResults();
     resetWatch();
     document.querySelector(".game__block").style.display = 'block';
@@ -69,17 +75,20 @@ function addContent() {
     switch (arrSize) {
         case 6:
             card.forEach(el => el.classList.add("small"));
-            container.classList.add("sm-container")
+            container.classList.add("sm-container");
+            gameLevel = "Легкий";
             break;
 
         case 8:
             card.forEach(el => el.classList.add("medium"));
-            container.classList.add("md-container")
+            container.classList.add("md-container");
+            gameLevel = "Средний";
             break;
 
         case 10:
             card.forEach(el => el.classList.add("large"));
-            container.classList.add("lg-container")
+            container.classList.add("lg-container");
+            gameLevel = "Сложный";
             break;
     }
 }
@@ -140,7 +149,30 @@ function removeClass(element) {
 
 // Вывод таблицы победителей
 function showWinTable(gameTime, gameResult) {
-    document.querySelector(".game__content").innerHTML =
+
+    // История игр
+    let arrUsers = [];
+    let user = {
+        "id": 1,
+        "name": userName,
+        "time": gameTime,
+        "attempts": gameResult,
+        "level": gameLevel
+    };
+
+    let winHistory = localStorage.getItem("winHistory");
+    if (winHistory != null) {
+        winHistory = JSON.parse(localStorage.getItem("winHistory"));
+        arrUsers.push(user);
+        arrUsers.push(...winHistory);
+        if (arrUsers.length > 10) {
+            arrUsers = arrUsers.slice(0, 10);
+        }
+    } else {
+        arrUsers.push(user);
+    }
+
+    let historyWinTable =
         `<div class="game__table">
             <table class="table">
                 <thead>
@@ -152,22 +184,36 @@ function showWinTable(gameTime, gameResult) {
                         <th>Уровень сложности</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td scope="row">1</td>
-                        <td>${userName}</td>
-                        <td>${gameTime}</td>
-                        <td>${gameResult}</td>
-                        <td>${gameLevel}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>`
+            <tbody>`;
+
+    arrUsers.forEach(function (item, i, ) {
+        historyWinTable += `
+        <tr>
+            <td scope="row">${i + 1}</td>
+            <td>${item.name}</td>
+            <td>${item.time}</td>
+            <td>${item.attempts}</td>
+            <td>${item.level}</td>
+        </tr>`
+    });
+
+    historyWinTable += `
+            </tbody>
+        </table>
+    </div>`
+
+    localStorage.setItem("winHistory", JSON.stringify(arrUsers));
+    document.querySelector(".game__content").innerHTML =
+        `<div class="start">
+        <button id="new-button" class="new__button">Новая игра</button>
+    </div>`
+    document.querySelector(".game__content").innerHTML += historyWinTable;
+    document.querySelector(".game__content").classList.add("table-col");
     document.querySelector(".game__block").style.display = 'none';
 }
 
 //Очистить результаты
-function clearResults(){
+function clearResults() {
     arrTwo.length = 0;
     attempts = 0;
     k = 0;
@@ -211,4 +257,9 @@ document.addEventListener('click', (e) => {
     const element = e.target;
     if (element.id === 'pause') pauseWatch();
     if (element.id === 'reset') resetWatch();
+    //запуск новой игры
+    if (element.id === 'new-button') {
+        launchGame();
+        document.querySelector(".game__content").classList.remove("table-col");
+    }
 });
