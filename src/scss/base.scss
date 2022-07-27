@@ -84,6 +84,12 @@ body {
 }
 
 /* ========================================================================== */
+.table-col {
+    flex-direction: column;
+}
+.start {
+    text-align: center;
+} 
 
 .game__container {
     display: flex;
